@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movimentações - Gestão Pecuária</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      <div style="font-size:50px;">🐄</div>
+      <h1>Gestão Pecuária</h1>
+      <p>Sistema de Controle Rural</p>
+    </div>
+
+    <nav class="menu">
+      <a href="index.html">📄 Contratos</a>
+      <a href="movimentacoes.html" class="active">📦 Movimentações</a>
+      <a href="#">📊 Relatórios</a>
+      <a href="#">👥 Parceiros</a>
+    </nav>
+
+  </aside>
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <div class="topbar">
+      <h2>Movimentações</h2>
+      <p>Controle entradas, saídas e pagamentos do sistema.</p>
+    </div>
+
+    <!-- FORM -->
+
+    <section class="section">
+
+      <h3 class="section-title">➕ Criar Movimentação</h3>
+
+      <form>
+
+        <div class="form-grid">
+
+          <div class="input-group">
+            <label>Contrato</label>
+            <input type="text" placeholder="Digite o contrato">
+          </div>
+
+          <div class="input-group">
+            <label>Tipo</label>
+
+            <select>
+              <option>ENTRADA</option>
+              <option>SAÍDA</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Saldo de Gado</label>
+            <input type="number" placeholder="Ex: 150">
+          </div>
+
+          <div class="input-group">
+            <label>Valor (R$)</label>
+            <input type="number" placeholder="Ex: 25000">
+          </div>
+
+          <div class="input-group">
+            <label>Data</label>
+            <input type="date">
+          </div>
+
+          <div class="input-group">
+            <label>Forma de Pagamento</label>
+
+            <select>
+              <option>DINHEIRO</option>
+              <option>PIX</option>
+              <option>BOLETO</option>
+              <option>TRANSFERÊNCIA</option>
+            </select>
+
+          </div>
+
+          <div class="input-group full-width">
+            <label>Nota Fiscal (Opcional)</label>
+            <input type="text" placeholder="Digite a nota fiscal">
+          </div>
+
+          <div class="full-width">
+            <button class="btn">
+              ✅ Criar Movimentação
+            </button>
+          </div>
+
+        </div>
+
+      </form>
+
+    </section>
+
+    <!-- TABELA -->
+
+    <section class="section">
+
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:20px;
+      ">
+
+        <h3 class="section-title" style="margin-bottom:0;">
+          📋 Lista de Movimentações
+        </h3>
+
+        <button class="btn" style="
+          width:180px;
+          height:50px;
+          margin-top:0;
+        ">
+          🔄 Atualizar
+        </button>
+
+      </div>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Contrato</th>
+            <th>Tipo</th>
+            <th>Saldo</th>
+            <th>Valor</th>
+            <th>Pagamento</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>#001</td>
+            <td>ENTRADA</td>
+            <td>150</td>
+            <td>R$ 25.000</td>
+            <td>PIX</td>
+            <td>28/05/2026</td>
+          </tr>
+
+          <tr>
+            <td>#002</td>
+            <td>SAÍDA</td>
+            <td>80</td>
+            <td>R$ 12.500</td>
+            <td>DINHEIRO</td>
+            <td>29/05/2026</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
