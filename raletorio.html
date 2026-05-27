@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios - Gestão Pecuária</title>
+
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <!-- CSS DO SISTEMA -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+
+    .chart-container{
+      background:white;
+      border-radius:18px;
+      padding:30px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom:30px;
+    }
+
+    .chart-box{
+      position:relative;
+      width:100%;
+      height:420px;
+    }
+
+    .table-actions{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+      gap:15px;
+    }
+
+    .mini-btn{
+      border:none;
+      background:linear-gradient(90deg,#5A8DEE,#6C63FF);
+      color:white;
+      padding:12px 18px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .mini-btn:hover{
+      opacity:0.9;
+      transform:translateY(-2px);
+    }
+
+    @media(max-width:768px){
+
+      .table-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .chart-box{
+        height:300px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      <div style="font-size:50px;">🐄</div>
+      <h1>Gestão Pecuária</h1>
+      <p>Sistema de Controle Rural</p>
+    </div>
+
+    <nav class="menu">
+      <a href="index.html">📄 Contratos</a>
+      <a href="movimentacoes.html">📦 Movimentações</a>
+      <a href="relatorios.html" class="active">📊 Relatórios</a>
+      <a href="#">👥 Parceiros</a>
+    </nav>
+
+  </aside>
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <div class="topbar">
+      <h2>Relatórios</h2>
+      <p>Acompanhe estatísticas e movimentações do sistema.</p>
+    </div>
+
+    <!-- CARDS -->
+
+    <section class="cards">
+
+      <div class="card">
+        <h3>
+          <i class="fa-regular fa-file"></i>
+          Contratos Ativos
+        </h3>
+
+        <span>14</span>
+      </div>
+
+      <div class="card">
+        <h3>
+          <i class="fa-solid fa-users"></i>
+          Novos Contratos
+        </h3>
+
+        <span>5</span>
+      </div>
+
+      <div class="card">
+        <h3>
+          <i class="fa-regular fa-calendar"></i>
+          Próximos Vencimentos
+        </h3>
+
+        <span>2</span>
+      </div>
+
+      <div class="card">
+        <h3>
+          <i class="fa-solid fa-money-bill-trend-up"></i>
+          Movimentações
+        </h3>
+
+        <span>84</span>
+      </div>
+
+    </section>
+
+    <!-- GRÁFICO -->
+
+    <section class="chart-container">
+
+      <h3 class="section-title">
+        📈 Evolução de Contratos
+      </h3>
+
+      <div class="chart-box">
+        <canvas id="graficoContratos"></canvas>
+      </div>
+
+    </section>
+
+    <!-- GRÁFICO 2 -->
+
+    <section class="chart-container">
+
+      <h3 class="section-title">
+        💰 Entradas vs Saídas
+      </h3>
+
+      <div class="chart-box">
+        <canvas id="graficoFinanceiro"></canvas>
+      </div>
+
+    </section>
+
+    <!-- TABELA -->
+
+    <section class="section">
+
+      <div class="table-actions">
+
+        <h3 class="section-title" style="margin-bottom:0;">
+          📋 Últimas Movimentações
+        </h3>
+
+        <div style="display:flex; gap:10px;">
+
+          <button class="mini-btn">
+            📄 Exportar PDF
+          </button>
+
+          <button class="mini-btn">
+            📊 Exportar Excel
+          </button>
+
+        </div>
+
+      </div>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Contrato</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Pagamento</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>#001</td>
+            <td>ENTRADA</td>
+            <td>R$ 25.000</td>
+            <td>PIX</td>
+            <td>28/05/2026</td>
+          </tr>
+
+          <tr>
+            <td>#002</td>
+            <td>SAÍDA</td>
+            <td>R$ 12.500</td>
+            <td>DINHEIRO</td>
+            <td>29/05/2026</td>
+          </tr>
+
+          <tr>
+            <td>#003</td>
+            <td>ENTRADA</td>
+            <td>R$ 31.000</td>
+            <td>TRANSFERÊNCIA</td>
+            <td>30/05/2026</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </section>
+
+  </main>
+
+  <!-- CHARTS -->
+
+  <script>
+
+    // GRÁFICO DE CONTRATOS
+
+    const ctx1 = document.getElementById('graficoContratos');
+
+    new Chart(ctx1, {
+
+      type: 'line',
+
+      data: {
+
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+
+        datasets: [{
+
+          label: 'Contratos',
+
+          data: [2, 5, 4, 8, 10, 14],
+
+          borderWidth: 4,
+
+          fill: true,
+
+          tension: 0.4,
+
+          backgroundColor: 'rgba(108,99,255,0.15)',
+
+          borderColor: '#6C63FF',
+
+          pointBackgroundColor: '#6C63FF',
+
+          pointRadius: 5
+
+        }]
+
+      },
+
+      options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        plugins: {
+
+          legend: {
+            display: false
+          }
+
+        },
+
+        scales: {
+
+          y: {
+            beginAtZero: true
+          }
+
+        }
+
+      }
+
+    });
+
+    // GRÁFICO FINANCEIRO
+
+    const ctx2 = document.getElementById('graficoFinanceiro');
+
+    new Chart(ctx2, {
+
+      type: 'bar',
+
+      data: {
+
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+
+        datasets: [
+
+          {
+            label: 'Entradas',
+            data: [12000, 19000, 8000, 25000, 32000, 28000],
+            borderRadius: 10
+          },
+
+          {
+            label: 'Saídas',
+            data: [6000, 9000, 4000, 14000, 18000, 12000],
+            borderRadius: 10
+          }
+
+        ]
+
+      },
+
+      options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        plugins: {
+
+          legend: {
+            position: 'top'
+          }
+
+        },
+
+        scales: {
+
+          y: {
+            beginAtZero: true
+          }
+
+        }
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
